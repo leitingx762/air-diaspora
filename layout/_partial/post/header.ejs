@@ -1,0 +1,29 @@
+<div id="top" style="display: block;">
+<audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="<%- page.autoplay!=false && theme.autoplay ||  "false" %>">
+                <source type="audio/mpeg" src="<%- page.mp3 %>">
+            </audio>
+            <% if (page.mp3 == '' | page.mp3 == null){%>
+                <ul id="audio-list" style="display:none">
+                    <% for (var i in theme.mp3){ %>
+                        <li title='<%- i %>' data-url='<%- theme.mp3[i] %>'></li>
+                    <%}%>
+                </ul>
+            <%}%>
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-left image-icon" href="javascript:history.go(-1)" data-url="<%= config.url %>"></a>
+    <a class="icon-home image-icon" href="/"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle"><%- page.title %></h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;">艾尔&nbsp;</a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>

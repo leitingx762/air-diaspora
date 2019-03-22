@@ -1,0 +1,11 @@
+<body class="loading">
+<%- partial('_partial/head', null, {cache: true}) %>
+<%- partial("_partial/menu", null, {cache: true}) %>
+<%- partial('_partial/post/header', {cache: true}) %>
+  <span id="config-title" style="display:none"><%= config.title %></span>
+  <div id="loader"></div>
+  <%- body %>
+</body>
+<%- partial('_partial/scripts', null, {cache: true}) %>
+
+</html>

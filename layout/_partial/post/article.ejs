@@ -1,0 +1,37 @@
+<div>
+<div class="article">
+    <div class='main'>
+        <h1 class="title"><%- page.title %></h1>
+        <div class="stuff">
+            <span><%- page.custom||page.date.locale("zh-cn").format("MMM DD, YYYY") %></span>
+            <%- partial('_partial/post/tag', {post: page}) %>
+        </div>
+        <div class="content markdown">
+            <%- page.content %>
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+        </div>
+        <ul id="pager" class="article">
+          <% if(page.prev){ %>
+            <li class="previous">
+                <a href="<%- url_for(page.prev.path) %>" data-original-title="">← <%= page.prev.title %></a>
+            </li>
+          <% }%>
+          <% if(page.next){%>
+            <li class="next">
+                <a href="<%- url_for(page.next.path) %>" data-original-title=""><%= page.next.title %>  →</a>
+            </li>
+          <% }%>
+        </ul>
+    </div>
+    <% if (page.toc!=false && theme.TOC ){ %>
+        <div class='side'>
+            <%- toc(page.content, {list_number: true}) %>
+        </div>
+    <%}%>
+</div>
+<% if(theme.valine.on) {%>
+  <div class="article">
+    <%- partial('_partial/post/valine') %>
+  </div>
+<% }%>
+</div>

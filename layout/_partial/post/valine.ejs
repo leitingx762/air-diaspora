@@ -1,0 +1,17 @@
+<div id="comments">
+    <div id="vcomment" class="comment"></div>
+    <%- js('//cdn1.lncld.net/static/js/3.0.4/av-min.js') %>
+    <%- js(theme.valine.cdn) %>
+    <script>
+    setTimeout(function(){new Valine({
+        el: '#vcomment',
+        notify: '<%= theme.valine.notify %>',
+        verify: '<%= theme.valine.verify %>',
+        app_id: "<%= theme.valine.appid %>",
+        app_key: "<%= theme.valine.appkey %>",
+        placeholder: "<%= theme.valine.placeholder %>",
+        avatar: "<%= theme.valine.avatar %>"
+      })},0)
+
+    </script>
+</div>

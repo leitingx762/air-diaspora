@@ -1,0 +1,24 @@
+<div class="nav">
+    <ul id="menu-menu" class="menu">
+        <% for (var i in theme.menu){ %>
+        <li class="<%- theme.menu[i].indexOf('http') > -1 ? " " : "pview" %> menu-item menu-item-type-post_type menu-item-object-page">
+            <%- link_to(theme.menu[i].lastIndexOf('/') > 0 ? theme.menu[i] : theme.menu[i] + '/', i)%>
+        </li>
+        <%}%>
+    </ul>
+  <ul  class="menu menu-git">
+    <li><a href="https://github.com/leitingx762" target="_blank">github</a></li>
+    <li><a href="https://gitee.com/airgoo" target="_blank">gitee</a></li>
+    <li><a href="https://weibo.com/u/2100563617" target="_blank">微博</a></li>
+  </ul>
+    <p id="copyright">
+        &copy; <%= date(new Date(), 'YYYY') %> <%= config.title || config.author %>，
+        Powerd By：<%- link_to("http://hexo.io/", "Hexo", {external: true})%>
+    </p>
+</div>
+<div id="header">
+  <div>
+    <a class="image-logo" href="/"></a>
+    <div class="icon-menu switchmenu"></div>
+  </div>
+</div>

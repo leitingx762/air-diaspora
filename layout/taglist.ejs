@@ -1,0 +1,71 @@
+<div>
+<%- partial("_partial/post/header")%>
+<div class="article tag-article">
+    <div class='main'>
+        <h1 class="title"><%- page.title %></h1>
+        <div class="stuff">
+            <span><%- page.custom %></span>
+            <%- partial('_partial/post/tag', {post: page}) %>
+        </div>
+        <div class="content markdown">
+            <%- page.content %>
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+        </div>
+    </div>
+    <% if (page.toc!=false && theme.TOC ){ %>
+        <div class='side'>
+            <%- toc(page.content, {list_number: true}) %>
+        </div>
+    <%}%>
+</div>
+<div id="single">
+  <article class="article tag-article">
+      <% if (site.tags.length){ %>
+        <span id="cleansel">切换</span>
+        <div id="tags" class="taglist show">
+          <h1>共&nbsp;<%= site.tags.length %>&nbsp;个标签</h1><br>
+            <% site.tags.forEach(function(item, i){ %>
+              <label class="post-tags-list-item"><input type="checkbox" value="<%=item.name%>"><%=item.name%>&nbsp;<span><%=item.length%></spn></label>
+            <% }) %>
+        </div>
+        <div id="categories" class="taglist">
+          <h1>共&nbsp;<%= site.categories.length %>&nbsp;个分类</h1><br>
+            <% site.categories.forEach(function(item){ %>
+              <label class="post-tags-list-item"><input type="radio" name="categor" value="<%=item.name%>"><%=item.name%>&nbsp;<span><%=item.length%></spn></label>
+            <% }) %>
+        </div>
+      <% } %>
+    <div id="title-list">
+      <% if(site.posts.length){
+        let list={};
+        site.posts.forEach( post=> {
+            let _date=date(post.date,"YYYY");
+            list[_date]?list[_date].push(post):list[_date]=[post]
+          }
+        )
+        for(const key in list){
+          list[key].sort((a,b)=> b.date - a.date)
+        }
+        list.index = Object.keys(list).sort((a,b)=>b-a)
+        list.index.forEach(year=>{ %>
+          <div id= "y<%- year %>" class="year">
+            <h1><%- year%></h1>
+            <%list[year].forEach( post=>{%>
+              <a href="<%- url_for(post.path) %>" class="<% post.categories.forEach(function(category, i){ %><%=category.name%> <% }) %>"
+                data-tags="<% post.tags.forEach(function(tag, i){ %><%=tag.name%><% if (i+1<post.tags.length){%>,<%}})%>"
+                data-series="<%- post.series %>"
+                <% if(theme.author && theme.author.on==true && post.author) {%>
+                  data-author="<%=post.author %>"
+                <%}%>
+                <span class="post-date" title="<%= date(post.date, 'YYYY-MM-DD HH:mm:ss')%>"><%= date(post.date, 'MM-DD') %></span>
+                <span class="post-title" title="<%=post.title%>"><%=post.title||"未命名" %></span>
+              </a>
+            <%})%>
+          </div>
+        <%})
+      }%>
+    </div>
+  </article>
+</div>
+  <%- js('/js/taglist.js') %>
+</div>
