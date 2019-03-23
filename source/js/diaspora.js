@@ -235,14 +235,14 @@ $(function () {
     if ($("#screen").length)  {
       logohide = screen.availHeight;
     }
-    $("#header .image-logo")[scrollY > (logohide||20)? "addClass" : "removeClass"]("hide")
+    $("#header .image-logo")[scrollY > (logohide||10)? "addClass" : "removeClass"]("hide")
     if ($(".scrollbar").length && !Diaspora.P() && !$(".icon-images").hasClass("active")) {
       var wt = $(window).scrollTop(),
         tw = $("#top").width(),
         dh = document.body.scrollHeight,
-        wh = $(window).height()
-      var width = tw / (dh - wh) * wt
-      $(".scrollbar").width(width)
+        wh = document.body.clientHeight
+      var width = (1 - wt / (dh - wh)) * tw
+      $(".scrollbar-mask").width(width)
       if (wt > 80 && window.innerWidth > 800) {
         $(".subtitle").fadeIn()
       } else {
@@ -410,5 +410,5 @@ $(function () {
     }
   })
 
-  console.log("%c Github %c", "background:#24272A; color:#ffffff", "", "https://github.com/Fechin/hexo-theme-diaspora")
+  console.log("%c Github %c", "background:#24272A; color:#ffffff", "", "https://github.com/leitingx762/air-diaspora")
 })
