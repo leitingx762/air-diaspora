@@ -59,7 +59,7 @@ var Diaspora = {
     })
     setTimeout(function () {
       $("#preview").addClass("show")
-      $("#container").data("scroll", window.scrollY)
+      $("#container").data("scroll", window.pageYOffset)
       setTimeout(function () {
         $("#preview").css({
           "position": "static",
@@ -140,7 +140,7 @@ $(function () {
   if ($("#screen").length) {
     $("#top").addClass("hide")
     $(window).scroll(function () {
-      $("#top")[scrollY < screen.availHeight ? "addClass" :"removeClass"]("hide")
+      $("#top")[window.pageYOffset < screen.availHeight ? "addClass" : "removeClass"]("hide")
     })
   }
   if (Diaspora.P()) {
@@ -235,7 +235,7 @@ $(function () {
     if ($("#screen").length)  {
       logohide = screen.availHeight;
     }
-    $("#header .image-logo")[scrollY > (logohide||10)? "addClass" : "removeClass"]("hide")
+    $("#header .image-logo")[window.pageYOffset > (logohide || 10) ? "addClass" : "removeClass"]("hide")
     if ($(".scrollbar").length && !Diaspora.P() && !$(".icon-images").hasClass("active")) {
       var wt = $(window).scrollTop(),
         tw = $("#top").width(),
