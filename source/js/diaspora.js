@@ -233,14 +233,14 @@ $(function () {
   $(window).on("scroll", function () {
     let logohide
     if ($("#screen").length)  {
-      logohide = screen.availHeight;
+      logohide = screen.availHeight
     }
     $("#header .image-logo")[window.pageYOffset > (logohide || 10) ? "addClass" : "removeClass"]("hide")
     if ($(".scrollbar").length && !Diaspora.P() && !$(".icon-images").hasClass("active")) {
       var wt = $(window).scrollTop(),
         tw = $("#top").width(),
         dh = document.body.scrollHeight,
-        wh = document.body.clientHeight
+        wh = window.innerHeight
       var width = (1 - wt / (dh - wh)) * tw
       $(".scrollbar-mask").width(width)
       if (wt > 80 && window.innerWidth > 800) {
